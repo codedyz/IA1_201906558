@@ -1,0 +1,63 @@
+/* Estilos para el título */
+h1 {
+    text-align: center;
+    font-family: Arial, sans-serif;
+    color: #333;
+}
+
+/* Estilos para el contenedor */
+body {
+    font-family: Arial, sans-serif;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/* Contenedor de controles en línea */
+.controls {
+    display: flex;
+    align-items: center;
+    gap: 10px; /* Espaciado entre elementos */
+    margin: 10px;
+}
+
+/* Estilos para la tabla */
+table {
+    border-collapse: collapse;
+    margin-top: 20px;
+    max-height: 300px;
+    overflow-y: scroll; 
+    overflow-x: scroll;
+}
+
+th, td {
+    padding: 10px;
+    text-align: center;
+    border: 1px solid #ddd;
+}
+
+th {
+    background-color: #f4f4f4;
+    font-weight: bold;
+    color: #333;
+}
+
+/* Estilos para el botón y select */
+button {
+    background-color: #4CAF50;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+button:hover {
+    background-color: #45a049;
+}
+
+/* Estilo para el área del gráfico */
+#chart_div {
+    margin-top: 20px;
+}
