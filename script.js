@@ -74,7 +74,6 @@ function processCSVData(csvData) {
     var headers = lines[0].split(",").map(header => header.trim());
     var hasXTrain = headers.includes("XTrain");
     var hasYTrain = headers.includes("YTrain");
-    var hasPredictArray = headers.includes("predictArray");
 
     var thead = document.getElementById("dataTable").getElementsByTagName("thead")[0];
     thead.innerHTML = ""; // Limpiar encabezados previos
@@ -94,7 +93,6 @@ function processCSVData(csvData) {
             dataRows.push(values);
             if (hasXTrain) xTrain.push(values[headers.indexOf("XTrain")]);
             if (hasYTrain) yTrain.push(values[headers.indexOf("YTrain")]);
-            if (hasPredictArray) yPredict.push(values[headers.indexOf("predictArray")]);
         }
     }
 
@@ -125,7 +123,25 @@ function model_type() {
 
 function runPolyRegression() {
     var poly = new PolynomialRegression();
-    poly.fit(xTrain, yTrain,2);
+    poly.fit(xTrain, yTrain,dataGrades[0]);
+    yPredict = poly.predict(xTrain)
+    var r2 = poly.getError();
+
+    
+    for (let i = 0; i < yPredict.length; i++) {
+        yPredict[i] = Number(yPredict[i].toFixed(2));
+    }
+    document.getElementById("predict-title").innerHTML = `
+    <th scope="col">Error</th>
+    <th scope="col">YPredict</th>
+    `;
+
+    document.getElementById("resultsRow").innerHTML = `
+        <td>${r2}</td>
+        <td>${yPredict.join(", ")}</td>
+    `;
+
+    document.getElementById("graph").disabled = false;
 
 }
 
