@@ -9,6 +9,8 @@ var selectedAlgorithm = "linear"; // Por defecto, Linear Regression
 function updateAlgorithm() {
     selectedAlgorithm = document.getElementById("algorithmSelect").value;
     document.getElementById("gradeInput").value = '';
+    document.getElementById("predict").disabled = true;
+    document.getElementById("graph").disabled = true;
 
     if(selectedAlgorithm.toLowerCase() == "linear"){
         document.getElementById("params_poly").style.display = "none";
@@ -56,9 +58,10 @@ function grades() {
     const valores = inputValor.split(',').map(valor => parseInt(valor.trim()));
     
     // Agregar los valores al arreglo global
-    dataGrades.push(...valores);
+    dataGrades.unshift(...valores);
 
     // Mostrar el arreglo en la consola para verificar
+    alert("Grado "+dataGrades[0]+ " cargado exitosamente")
     console.log(dataGrades);
 
 }
@@ -111,7 +114,8 @@ function populateTable(dataRows) {
 }
 
 function model_type() {
-
+    const div2 = document.getElementById("resultsTable");
+    div2.scrollIntoView({ behavior: "smooth" });
     if(selectedAlgorithm.toLowerCase() == "linear"){
         runLinearRegression()
 
@@ -177,6 +181,8 @@ function runLinearRegression() {
 }
 
 function callDraw() {
+    const div2 = document.getElementById("chart_div");
+    div2.scrollIntoView({ behavior: "smooth" });
     var a = joinArrays('x', xTrain, 'yTrain', yTrain, 'yPredict', yPredict);
 
     google.charts.load('current', { 'packages': ['corechart'] });
